@@ -22,6 +22,7 @@
     "dev:app-plus": "cross-env NODE_ENV=development UNI_PLATFORM=app-plus vue-cli-service uni-build --watch",
     "dev:custom": "cross-env NODE_ENV=development uniapp-cli custom",
     "dev:h5": "cross-env NODE_ENV=development UNI_PLATFORM=h5 vue-cli-service uni-serve",
+    "sit:h5": "cross-env NODE_ENV=development UNI_PLATFORM=h5 vue-cli-service uni-serve --mode sit",
     "dev:mp-360": "cross-env NODE_ENV=development UNI_PLATFORM=mp-360 vue-cli-service uni-build --watch",
     "dev:mp-alipay": "cross-env NODE_ENV=development UNI_PLATFORM=mp-alipay vue-cli-service uni-build --watch",
     "dev:mp-baidu": "cross-env NODE_ENV=development UNI_PLATFORM=mp-baidu vue-cli-service uni-build --watch",
@@ -62,6 +63,7 @@
     "flyio": "^0.6.2",
     "regenerator-runtime": "^0.12.1",
     "vue": "^2.6.11",
+    "vue-i18n": "^8.24.4",
     "vuex": "^3.2.0"
   },
   "devDependencies": {
@@ -84,7 +86,9 @@
     "mini-types": "*",
     "miniprogram-api-typings": "*",
     "postcss-comment": "^2.0.0",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "sass": "1.26.2",
+    "sass-loader": "8.0.2"
   },
   "browserslist": [
     "Android >= 4",
