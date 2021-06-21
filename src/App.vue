@@ -1,7 +1,7 @@
 <script>
   export default {
     globalData: {
-      theme: 'theme1'
+      key: 'value'
     },
     onLaunch: function() {
       console.log('App Launch', process.env.NODE_ENV, process.env.VUE_APP_BASE_URL)

@@ -1,19 +1,27 @@
-.theme1 {
-  
+@mixin theme($primaryColor, $accentColor) {
+  .divider {
+    height: 1px;
+    border-bottom: 1px solid #F5F5F5;
+  }
+  .loadding-more {
+    color: $accentColor;
+    font-size: 0.8rem;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+  }
   .text-color {
-    color: red!important;
+    color: $accentColor;
   }
   .uni-list-item__content-title{
-    color: red!important;
+    color: $accentColor!important;
   }
 }
 
+.theme1 {
+  @include theme(#ff0000, #ff0000);
+}
+
 .theme2 {
-  
-  .text-color {
-    color: blue;
-  }
-  .uni-list-item__content-title{
-    color: blue!important;
-  }
+  @include theme(#0000ff, #0000ff);
 }

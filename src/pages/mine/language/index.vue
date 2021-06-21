@@ -19,6 +19,10 @@
     methods: {
       onChange(lang){
         this.$i18n.locale = lang
+        // 刷新页面
+        uni.redirectTo({
+          url: '/pages/mine/language/index'
+        })
         console.log(this.$i18n.locale)
       }
     }

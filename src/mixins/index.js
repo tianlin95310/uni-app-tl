@@ -3,25 +3,27 @@ import { getPageTitle } from './pageTitle.js'
 export default {
   data() {
     return {
-      updateFlag: false
+      // 保证第一次能执行方法
+      updateFlag: true
     }
   },
   // 保证新打开的页面状态栏也是跟随主题的
   onReady() {
-    this.updateNavigationBar()
+    console.log('---mixin onReady---', this.updateFlag)
+    this.updateNavigationBar('onReady')
   },
   onShow(){
     let pages = getCurrentPages()
     let route = pages[pages.length - 1].route
-    console.log('---mixin onShow---', route)
+    console.log('---mixin onShow---', route, this.updateFlag)
     if (this.updateFlag){
-      this.updateNavigationBar()
-      this.updateTabbar()
+      this.updateNavigationBar('onShow')
+      this.updateTabbar('onShow')
       this.updateFlag = false
     }
   },
   methods: {
-    updateNavigationBar(){
+    updateNavigationBar(callFun){
       let pages = getCurrentPages()
       let route = pages[pages.length - 1].route
       uni.setNavigationBarTitle({
@@ -31,9 +33,9 @@ export default {
         frontColor: '#ffffff',
         backgroundColor: this.theme === 'theme1' ? "#ff0000" : "#0000ff"
       })
-      console.log('---mixin updateNavigationBar---')
+      console.log('---mixin updateNavigationBar---', callFun)
     },
-    updateTabbar(){
+    updateTabbar(callFun){
       uni.setTabBarStyle({
         selectedColor: this.theme === 'theme1' ? "#ff0000" : "#0000ff",
       })
@@ -58,7 +60,7 @@ export default {
       uni.setTabBarItem(tabBarOptions0)
       uni.setTabBarItem(tabBarOptions1)
       uni.setTabBarItem(tabBarOptions2)
-      console.log('---mixin updateTabbar---')
+      console.log('---mixin updateTabbar---', callFun)
     }
   },
   computed: {
@@ -68,6 +70,11 @@ export default {
     theme(){
       this.updateFlag = true
       console.log('mixin 主题发生变化')
+    },
+    '$i18n.locale'() {
+      this.updateFlag = true
+      console.log('mixin 语言发生变化')
     }
+    
   }
 }

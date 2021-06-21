@@ -9,5 +9,7 @@ export function getPageTitle(route, vue) {
     return vue.$t('languageSetting')
   } else if (route === 'pages/mine/theme/index') {
     return vue.$t('themeSetting')
+  } else {
+    return route
   }
 }
