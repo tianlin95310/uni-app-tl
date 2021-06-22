@@ -16,6 +16,7 @@
 
 <script>
   import mixin from '@/mixins/index.js'
+  import { post } from '@/utils/EventBus.js'
   export default {
     mixins: [mixin],
     data() {
@@ -26,6 +27,7 @@
     methods: {
       changeTheme(theme) {
         this.$store.commit('setTheme', theme)
+        post('main-onLoad', '点击了切换主题按钮')
         console.log(this.$store.state.theme.theme)
         // 刷新页面
         uni.redirectTo({

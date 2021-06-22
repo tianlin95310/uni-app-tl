@@ -54,7 +54,9 @@
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "backgroundColor": "#F8F8F8",
+    "animationType": "slide-in-right",
+    "animationDuration": "300"
   },
   "tabBar": {
     "color": "#7A7E83",

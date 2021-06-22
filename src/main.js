@@ -3,7 +3,7 @@ import App from './App'
 
 import store from './store/index.js'
 import i18n from './i18n/index.js'
-
+import router from './utils/router.js'
 // 全局使用是没有必要的
 // import mixin from './mixins/index.js'
 // Vue.mixin(mixin)
@@ -11,7 +11,8 @@ import i18n from './i18n/index.js'
 import '@/common/theme.scss'
 
 Vue.config.productionTip = false
-Vue.prototype.$store = store
+// uni router
+Vue.prototype.router = router
 
 App.mpType = 'app'
 
