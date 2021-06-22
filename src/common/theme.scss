@@ -1,8 +1,10 @@
 @mixin theme($primaryColor, $accentColor) {
+  // 分割线
   .divider {
     height: 1px;
     border-bottom: 1px solid #F5F5F5;
   }
+  // 加载更多
   .loadding-more {
     color: $accentColor;
     font-size: 0.8rem;
@@ -10,11 +12,22 @@
     height: 40px;
     line-height: 40px;
   }
-  .text-color {
-    color: $accentColor;
+  // 页面
+  .page-theme-set {
+    .text-color {
+      color: $accentColor;
+    }
   }
+  // uni-list的标题
   .uni-list-item__content-title{
     color: $accentColor!important;
+  }
+  // 下拉刷新的图标
+  .uni-page-refresh__path {
+    stroke: $accentColor!important
+  }
+  .uni-page-refresh__icon {
+    fill: $accentColor!important
   }
 }
 
@@ -25,3 +38,5 @@
 .theme2 {
   @include theme(#0000ff, #0000ff);
 }
+
+ 

@@ -1,33 +1,51 @@
-import { mapGetters } from 'vuex'
-import { getPageTitle } from './pageTitle.js'
+import {
+  mapGetters
+} from 'vuex'
+import {
+  getPageTitle,
+  getParent
+} from './utils.js'
 export default {
   data() {
     return {
       // 保证第一次能执行方法
-      updateFlag: true
+      updateFlag: true,
+      initClass: true
     }
   },
   // 保证新打开的页面状态栏也是跟随主题的
   onReady() {
-    console.log('---mixin onReady---', this.updateFlag)
+    console.log('---mixin onReady---')
     this.updateNavigationBar('onReady')
+    this.initPageClassName('onReady')
   },
-  onShow(){
+  onShow() {
     let pages = getCurrentPages()
     let route = pages[pages.length - 1].route
-    console.log('---mixin onShow---', route, this.updateFlag)
-    if (this.updateFlag){
+    console.log('---mixin onShow---', route, 'updateFlag =', this.updateFlag)
+    if (this.updateFlag) {
       this.updateNavigationBar('onShow')
       this.updateTabbar('onShow')
       this.updateFlag = false
     }
   },
   methods: {
-    updateNavigationBar(callFun){
+    initPageClassName(callFun) {
+      if (this.initClass) {
+        console.log('---mixin initClassName---', callFun)
+        let pagecomp = getParent(this)
+        if (pagecomp) {
+          let pageDiv = pagecomp.$el
+          pageDiv.classList.add(this.theme)
+        }
+        this.initClass = false
+      }
+    },
+    updateNavigationBar(callFun) {
       let pages = getCurrentPages()
       let route = pages[pages.length - 1].route
       uni.setNavigationBarTitle({
-          title: getPageTitle(route, this)
+        title: getPageTitle(route, this)
       });
       uni.setNavigationBarColor({
         frontColor: '#ffffff',
@@ -35,7 +53,7 @@ export default {
       })
       console.log('---mixin updateNavigationBar---', callFun)
     },
-    updateTabbar(callFun){
+    updateTabbar(callFun) {
       uni.setTabBarStyle({
         selectedColor: this.theme === 'theme1' ? "#ff0000" : "#0000ff",
       })
@@ -67,14 +85,23 @@ export default {
     ...mapGetters(['theme'])
   },
   watch: {
-    theme(){
-      this.updateFlag = true
-      console.log('mixin 主题发生变化')
+    theme(newv, oldv) {
+      console.log('mixin 主题发生变化', oldv, newv)
+      if (newv) {
+        this.updateFlag = true
+        let pagecomp = getParent(this)
+        if (pagecomp) {
+          let pageDiv = pagecomp.$el
+          console.log('---update class name---', pageDiv)
+          pageDiv.classList.remove(oldv)
+          pageDiv.classList.add(newv)
+        }
+      }
     },
     '$i18n.locale'() {
       this.updateFlag = true
       console.log('mixin 语言发生变化')
     }
-    
+
   }
 }

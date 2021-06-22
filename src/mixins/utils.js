@@ -13,3 +13,16 @@ export function getPageTitle(route, vue) {
     return route
   }
 }
+
+export function getParent(vue, pname = 'Page') {
+  let parent = vue.$parent;
+  let parentName = parent.$options.name;
+  while (parentName !== pname) {
+    parent = parent.$parent;
+    if (!parent) {
+      return false
+    }
+    parentName = parent.$options.name
+  }
+  return parent;
+}

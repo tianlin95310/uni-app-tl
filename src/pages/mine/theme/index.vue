@@ -1,5 +1,5 @@
 <template>
-  <view :class="['page-theme-set', theme]">
+  <view class="page-theme-set">
     <view>
       <text class="text-color">{{ $t('currentUser') }} {{ username }}</text>
     </view>
@@ -16,7 +16,7 @@
 
 <script>
   import mixin from '@/mixins/index.js'
-  import { post } from '@/utils/EventBus.js'
+  
   export default {
     mixins: [mixin],
     data() {
@@ -27,8 +27,7 @@
     methods: {
       changeTheme(theme) {
         this.$store.commit('setTheme', theme)
-        post('main-onLoad', '点击了切换主题按钮')
-        console.log(this.$store.state.theme.theme)
+        console.log('主题更改为', this.$store.state.theme.theme)
         // 刷新页面
         uni.redirectTo({
           url: '/pages/mine/theme/index'

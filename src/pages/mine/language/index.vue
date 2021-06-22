@@ -9,6 +9,9 @@
 
 <script>
   import mixin from '@/mixins/index.js'
+  import {
+    post
+  } from '@/utils/EventBus.js'
   export default {
     mixins: [mixin],
     data() {
@@ -19,6 +22,7 @@
     methods: {
       onChange(lang){
         this.$i18n.locale = lang
+        post('main-onLoad', '向main-onLoad事件监听发送了点击切换语言按钮事件')
         // 刷新页面
         uni.redirectTo({
           url: '/pages/mine/language/index'
