@@ -39,27 +39,7 @@
       }, 500)
     },
     methods: {
-      getParent(pname = 'Layout') {
-        let parent = this.$parent;
-        let parentName = parent.$options.name;
-        while (parentName !== pname) {
-          parent = parent.$parent;
-          if (!parent) {
-            return false
-          }
-          parentName = parent.$options.name
-          console.log('parentName', parentName, parent.$el)
-        }
-        return parent;
-      },
       onClick() {
-        let pagecomp = this.getParent()
-        if (pagecomp) {
-          let pageDiv = pagecomp.$el
-          console.log('getParent', pageDiv)
-          pageDiv.classList.remove(this.$store.state.theme.theme)
-          pageDiv.classList.add('theme2')
-        }
         const query = uni.createSelectorQuery();
         query.select('.page-mine').boundingClientRect(data => {
           console.log("得到布局位置信息" + JSON.stringify(data));
