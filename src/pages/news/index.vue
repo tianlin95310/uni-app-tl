@@ -1,7 +1,9 @@
 <template>
-  <view class="page-news">
-    <news-item :news="news"></news-item>
-    <view v-if="showLoading" class="loadding-more">加载中...</view>
+  <view :class="theme">
+    <view class="page-news">
+      <news-item :news="news"></news-item>
+      <view v-if="showLoading" class="loadding-more">加载中...</view>
+    </view>
   </view>
 </template>
 

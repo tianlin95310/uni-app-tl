@@ -9,15 +9,13 @@ export default {
   data() {
     return {
       // 保证第一次能执行方法
-      updateFlag: true,
-      initClass: true
+      updateFlag: true
     }
   },
   // 保证新打开的页面状态栏也是跟随主题的
   onReady() {
     console.log('---mixin onReady---')
     this.updateNavigationBar('onReady')
-    this.initPageClassName('onReady')
   },
   onShow() {
     let pages = getCurrentPages()
@@ -30,17 +28,6 @@ export default {
     }
   },
   methods: {
-    initPageClassName(callFun) {
-      if (this.initClass) {
-        console.log('---mixin initClassName---', callFun)
-        let pagecomp = getParent(this)
-        if (pagecomp) {
-          let pageDiv = pagecomp.$el
-          pageDiv.classList.add(this.theme)
-        }
-        this.initClass = false
-      }
-    },
     updateNavigationBar(callFun) {
       let pages = getCurrentPages()
       let route = pages[pages.length - 1].route
@@ -87,20 +74,11 @@ export default {
   watch: {
     theme(newv, oldv) {
       console.log('mixin 主题发生变化', oldv, newv)
-      if (newv) {
-        this.updateFlag = true
-        let pagecomp = getParent(this)
-        if (pagecomp) {
-          let pageDiv = pagecomp.$el
-          console.log('---update class name---', pageDiv)
-          pageDiv.classList.remove(oldv)
-          pageDiv.classList.add(newv)
-        }
-      }
+      this.updateFlag = true
     },
     '$i18n.locale'() {
-      this.updateFlag = true
       console.log('mixin 语言发生变化')
+      this.updateFlag = true
     }
 
   }

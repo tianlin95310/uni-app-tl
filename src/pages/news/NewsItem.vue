@@ -23,7 +23,7 @@
 
 <style scoped lang="scss">
   .news-items {
-    font-size: 0.8rem;
+    font-size: 28rpx;
 
     .new-item {
       padding: 8rpx 16rpx;

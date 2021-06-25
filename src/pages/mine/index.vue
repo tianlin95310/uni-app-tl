@@ -1,22 +1,25 @@
 <template>
-  <view class="page-mine">
-    <uni-list>
-      <uni-list-item link="navigateTo" :show-extra-icon="true" :extra-icon="{
-         type: 'smallcircle',
-         color: this.mineIconColor
-        }" :title="$t('themeSetting')" @click="onItemClick(0)"></uni-list-item>
-      <uni-list-item link="navigateTo" :show-extra-icon="true" :extra-icon="{
-          type: 'chat',
-          color: this.mineIconColor
-        }" :title="$t('languageSetting')" @click="onItemClick(1)"></uni-list-item>
-
-      <uni-list-item link="navigateTo" :show-extra-icon="true" :extra-icon="{
+  <view :class="theme">
+    <view class="page-mine">
+      <uni-list>
+        <uni-list-item link="navigateTo" :show-extra-icon="true" :extra-icon="{
+           type: 'smallcircle',
+           color: this.mineIconColor
+          }" :title="$t('themeSetting')" @click="onItemClick(0)"></uni-list-item>
+        <uni-list-item link="navigateTo" :show-extra-icon="true" :extra-icon="{
             type: 'chat',
             color: this.mineIconColor
-          }" title="获取页面内的的节点信息" @click="onClick"></uni-list-item>
-
-    </uni-list>
+          }" :title="$t('languageSetting')" @click="onItemClick(1)"></uni-list-item>
+    
+        <uni-list-item link="navigateTo" :show-extra-icon="true" :extra-icon="{
+              type: 'chat',
+              color: this.mineIconColor
+            }" title="获取页面内的的节点信息" @click="onClick"></uni-list-item>
+    
+      </uni-list>
+    </view>
   </view>
+
 </template>
 
 <script>
@@ -41,7 +44,7 @@
     methods: {
       onClick() {
         const query = uni.createSelectorQuery();
-        query.select('.page-mine').boundingClientRect(data => {
+        query.select('#page').boundingClientRect(data => {
           console.log("得到布局位置信息" + JSON.stringify(data));
           console.log("节点离页面顶部的距离为" + data.top);
           console.log("节点离页面底部的距离为" + data.bottom);

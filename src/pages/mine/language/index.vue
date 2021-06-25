@@ -1,10 +1,13 @@
 <template>
-  <view class="page-language-set">
-    <uni-list>
-      <uni-list-item :title="$t('chinese')" :rightText="this.$i18n.locale == 'zh-CN' ? $t('applied') : ''" @click="onChange('zh-CN')" clickable></uni-list-item>
-      <uni-list-item :title="$t('english')" :rightText="this.$i18n.locale == 'en-US' ? $t('applied') : ''" @click="onChange('en-US')" clickable></uni-list-item>
-    </uni-list>
+  <view :class="theme">
+    <view class="page-language-set">
+      <uni-list>
+        <uni-list-item :title="$t('chinese')" :rightText="isApplyed('zh-CN')" @click="onChange('zh-CN')" clickable></uni-list-item>
+        <uni-list-item :title="$t('english')" :rightText="isApplyed('en-US')" @click="onChange('en-US')" clickable></uni-list-item>
+      </uni-list>
+    </view>
   </view>
+  
 </template>
 
 <script>
@@ -20,6 +23,9 @@
       }
     },
     methods: {
+      isApplyed(lang) {
+        return this.$i18n.locale === lang ? this.$t('applied') : ''
+      },
       onChange(lang){
         this.$i18n.locale = lang
         post('main-onLoad', '向main-onLoad事件监听发送了点击切换语言按钮事件')

@@ -1,17 +1,20 @@
 <template>
-  <view class="page-theme-set">
-    <view>
-      <text class="text-color">{{ $t('currentUser') }} {{ username }}</text>
-    </view>
-    <view class="themes">
-      <view class="card theme1" @click="changeTheme('theme1')">
-        <uni-icons v-if="theme == 'theme1'" type="checkmarkempty" color="white" size="52"></uni-icons>
+  <view :class="theme">
+    <view class="page-theme-set">
+      <view>
+        <text class="text-color">{{ $t('currentUser') }} {{ username }}</text>
       </view>
-      <view class="card theme2" @click="changeTheme('theme2')">
-        <uni-icons v-if="theme == 'theme2'" type="checkmarkempty" color="white" size="52"></uni-icons>
+      <view class="themes">
+        <view class="card theme1" @click="changeTheme('theme1')">
+          <uni-icons v-if="theme == 'theme1'" type="checkmarkempty" color="white" size="52"></uni-icons>
+        </view>
+        <view class="card theme2" @click="changeTheme('theme2')">
+          <uni-icons v-if="theme == 'theme2'" type="checkmarkempty" color="white" size="52"></uni-icons>
+        </view>
       </view>
     </view>
   </view>
+
 </template>
 
 <script>
