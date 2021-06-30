@@ -1,10 +1,13 @@
 <template>
   <view class="page-login">
-    <view>
-      <input v-model="username" size="default" placeholder="请输入用户名" />
-      <input v-model="openid" size="default" placeholder="请输入openID" />
+    <view class="user-info">
+      <view>
+        <input v-model="username" size="default" placeholder="请输入用户名" />
+        <input v-model="openid" size="default" placeholder="请输入openID" />
+      </view>
+
     </view>
-    <view>
+    <view class="button">
       <button type="primary" size="default" @click="login">登录</button>
     </view>
   </view>
@@ -56,7 +59,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .page-login {
     padding: 16rpx;
     display: flex;
@@ -64,16 +67,29 @@
     flex-direction: column;
     height: 100vh;
 
-    view {
+    .user-info {
       width: 100%;
       flex: 1;
+      display: flex;
+      align-items: center;
 
-      input {
-        border: 1px solid grey !important;
-        margin-top: 10px;
-        padding: 4px 6px;
-        border-radius: 4px;
+      view {
+        width: 100%;
+
+        input {
+          border: 1px solid grey !important;
+          margin-top: 10px;
+          padding: 4px 6px;
+          border-radius: 4px;
+        }
       }
+
     }
+
+    .button {
+      width: 100%;
+      flex: 1;
+    }
+
   }
 </style>

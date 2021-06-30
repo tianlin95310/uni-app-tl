@@ -39,7 +39,7 @@
   }
 </script>
 
-<style>
+<style scoped lang="scss">
   .page-language-set {
     
   }

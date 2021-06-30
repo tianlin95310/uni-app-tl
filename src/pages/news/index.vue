@@ -51,7 +51,7 @@
       setTimeout(() => {
         this.news = data
         uni.stopPullDownRefresh()
-      }, 300)
+      }, 500)
     },
     onReachBottom() {
       console.log('onReachBottom')
