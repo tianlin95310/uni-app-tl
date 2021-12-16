@@ -4,9 +4,8 @@
   "private": true,
   "scripts": {
     "devh": "npm run dev:h5",
-    "sith": "npm run sit:h5",
-    "devm": "npm run dev:mp-weixin",
     "sith": "npm run sit:mp-weixin",
+    "devm": "npm run dev:mp-weixin",
     "build": "npm run build:h5",
     "build:app-plus": "cross-env NODE_ENV=production UNI_PLATFORM=app-plus vue-cli-service uni-build",
     "build:custom": "cross-env NODE_ENV=production uniapp-cli custom",

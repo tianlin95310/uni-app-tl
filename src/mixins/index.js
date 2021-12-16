@@ -3,8 +3,8 @@ import {
 } from 'vuex'
 import {
   getPageTitle,
-  getParent
 } from './utils.js'
+
 export default {
   data() {
     return {
